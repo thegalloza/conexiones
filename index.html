@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conexiones — Juego de palabras diario</title>
+  <meta name="description" content="Un juego de palabras diario en espanol. Encuentra los 4 grupos de 4 palabras conectadas.">
+  <meta name="theme-color" content="#1a1a2e">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <button class="header-btn" id="btn-help" aria-label="Como jugar">?</button>
+      <div class="header-center">
+        <h1 class="title">Conexiones</h1>
+        <p class="subtitle" id="puzzle-date"></p>
+      </div>
+      <button class="header-btn" id="btn-stats" aria-label="Estadisticas">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="10" width="4" height="8" rx="1"/>
+          <rect x="8" y="6" width="4" height="12" rx="1"/>
+          <rect x="14" y="2" width="4" height="16" rx="1"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Toast -->
+    <div class="toast-container">
+      <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Solved Groups Area -->
+    <div class="solved-area" id="solved-area"></div>
+
+    <!-- Game Grid -->
+    <div class="grid" id="grid" role="grid" aria-label="Tablero de palabras"></div>
+
+    <!-- Mistakes -->
+    <div class="mistakes" id="mistakes-area">
+      <span class="mistakes-label">Errores restantes:</span>
+      <div class="mistakes-dots" id="mistakes-dots"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls" id="controls">
+      <button class="btn btn-secondary" id="btn-shuffle">Mezclar</button>
+      <button class="btn btn-secondary" id="btn-deselect" disabled>Deseleccionar</button>
+      <button class="btn btn-primary" id="btn-submit" disabled>Enviar</button>
+    </div>
+
+    <!-- Game Over Banner -->
+    <div class="game-over" id="game-over" hidden>
+      <div class="game-over-content">
+        <h2 id="game-over-title"></h2>
+        <p id="game-over-subtitle"></p>
+        <div class="game-over-stats">
+          <div class="stat">
+            <span class="stat-value" id="stat-streak">0</span>
+            <span class="stat-label">Racha</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="stat-max-streak">0</span>
+            <span class="stat-label">Máx. racha</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="stat-win-pct">0%</span>
+            <span class="stat-label">Victorias</span>
+          </div>
+        </div>
+        <div class="game-over-actions">
+          <button class="btn btn-primary" id="btn-share">Compartir</button>
+        </div>
+        <p class="next-puzzle">Siguiente tabla en <span id="countdown"></span></p>
+      </div>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <div class="modal-overlay" id="modal-tutorial" hidden>
+      <div class="modal" role="dialog" aria-labelledby="tutorial-title">
+        <button class="modal-close" id="btn-close-tutorial" aria-label="Cerrar">&times;</button>
+        <h2 id="tutorial-title">Como jugar</h2>
+        <div class="tutorial-body">
+          <p>Encuentra los <strong>4 grupos de 4 palabras</strong> que comparten algo en común.</p>
+          <ul>
+            <li>Selecciona 4 palabras y presiona <strong>Enviar</strong> para adivinar un grupo.</li>
+            <li>Tienes <strong>4 intentos</strong> antes de perder.</li>
+            <li>Las categorías van de fácil a difícil.</li>
+          </ul>
+          <div class="tutorial-colors">
+            <span class="color-chip color-yellow"></span> Facil
+            <span class="color-chip color-green"></span> Medio
+            <span class="color-chip color-blue"></span> Dificil
+            <span class="color-chip color-purple"></span> Experto
+          </div>
+          <p class="tutorial-note">Una nueva tabla cada dia a la medianoche.</p>
+        </div>
+        <button class="btn btn-primary tutorial-start" id="btn-start">Jugar</button>
+      </div>
+    </div>
+
+    <!-- Stats Modal -->
+    <div class="modal-overlay" id="modal-stats" hidden>
+      <div class="modal" role="dialog" aria-labelledby="stats-title">
+        <button class="modal-close" id="btn-close-stats" aria-label="Cerrar">&times;</button>
+        <h2 id="stats-title">Estadísticas</h2>
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-value" id="modal-stat-played">0</span>
+            <span class="stat-label">Jugados</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="modal-stat-win-pct">0%</span>
+            <span class="stat-label">Victorias</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="modal-stat-streak">0</span>
+            <span class="stat-label">Racha</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="modal-stat-max">0</span>
+            <span class="stat-label">Máx. racha</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/puzzles.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
